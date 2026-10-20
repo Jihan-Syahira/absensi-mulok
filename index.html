@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sekolah Absensiku SMK SWASTA BANDUNG 2 TI PS TUAN</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'school-blue': '#1E3A8A',
+            'school-blue-light': '#3B82F6',
+            'soft-green': '#10B981',
+            'soft-green-light': '#D1FAE5',
+            'neutral-bg': '#F8FAFC',
+            'card-bg': '#FFFFFF'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #F8FAFC;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col text-gray-800">
+
+  <!-- HEADER COVER -->
+  <header class="bg-gradient-to-r from-school-blue to-blue-900 text-white shadow-xl p-4 md:p-6 border-b-4 border-soft-green">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-4">
+        <div class="bg-white/10 backdrop-blur border border-white/20 p-3.5 rounded-2xl text-soft-green text-3xl shadow-inner">
+          <i class="fa-solid fa-laptop-code"></i>
+        </div>
+        <div>
+          <span class="bg-soft-green text-gray-900 text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">Mata Pelajaran: INFORMATIKA</span>
+          <h1 class="text-lg md:text-2xl font-black tracking-wide mt-1">
+            Sekolah Absensiku SMK SWASTA BANDUNG 2 TI PS TUAN
+          </h1>
+          <p class="text-xs md:text-sm text-blue-100 flex items-center gap-2 mt-0.5">
+            <i class="fa-solid fa-chalkboard-user text-soft-green"></i> Guru Pengampu: <span class="font-bold text-white">Jihan Syahira, S.Kom</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- JAM DIGITAL & RESET (KHUSUS GURU) -->
+      <div class="bg-blue-950/80 border border-blue-400/30 rounded-2xl p-3 px-5 flex items-center gap-4 shadow-lg">
+        <div>
+          <p class="text-[10px] text-blue-300 uppercase font-bold tracking-wider">Jam Real-Time Sekolah</p>
+          <div id="realtimeClock" class="text-2xl md:text-3xl font-mono font-bold text-soft-green">00:00:00</div>
+        </div>
+        <button onclick="resetClockPrompt()" title="Reset Jam (Khusus Guru)" class="bg-red-500/80 hover:bg-red-600 text-white p-2.5 rounded-xl transition shadow active:scale-95">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVBAR UTAMA -->
+  <nav class="bg-white shadow border-b border-gray-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+      <div class="flex gap-2">
+        <button id="navLogin" onclick="switchTab('login')" class="px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 bg-school-blue text-white shadow">
+          <i class="fa-solid fa-right-to-bracket"></i> Halaman Utama
+        </button>
+        <button id="navSiswa" onclick="switchTab('siswa')" class="px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 text-gray-600 hover:bg-gray-100 transition">
+          <i class="fa-solid fa-user-graduate"></i> Portal Siswa
+        </button>
+        <button id="navGuru" onclick="switchTab('guru')" class="px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 text-gray-600 hover:bg-gray-100 transition">
+          <i class="fa-solid fa-user-tie"></i> Portal Guru
+        </button>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="openModal('modalTutorial')" class="text-gray-600 hover:text-school-blue p-2.5 rounded-xl flex items-center gap-1.5 text-sm font-bold hover:bg-blue-50 transition">
+          <i class="fa-solid fa-circle-play text-red-500 text-lg"></i> <span class="hidden md:inline">Tutorial</span>
+        </button>
+        <button onclick="openModal('modalPengaturan')" class="text-gray-600 hover:text-school-blue p-2.5 rounded-xl flex items-center gap-1.5 text-sm font-bold hover:bg-blue-50 transition">
+          <i class="fa-solid fa-gear text-gray-500 text-lg"></i> <span class="hidden md:inline">Pengaturan</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- KONTEN UTAMA -->
+  <main class="max-w-7xl mx-auto p-4 md:p-6 flex-1 w-full">
+
+    <!-- ================= HALAMAN LOGIN ================= -->
+    <section id="pageLogin" class="block">
+      <div class="max-w-lg mx-auto bg-white rounded-3xl shadow-xl p-8 border border-gray-100 mt-6 text-center relative overflow-hidden">
+        <div class="absolute -right-10 -top-10 w-32 h-32 bg-blue-50 rounded-full blur-2xl"></div>
+        <div class="w-20 h-20 bg-soft-green-light text-soft-green rounded-3xl flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h2 class="text-2xl font-black text-school-blue">Selamat Datang!</h2>
+        <p class="text-gray-500 text-sm mt-1">Pilih peran Anda di bawah ini untuk mengakses aplikasi absensi</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+          <button onclick="loginAs('siswa')" class="p-6 border-2 border-school-blue/20 rounded-2xl hover:border-school-blue hover:bg-blue-50/50 transition flex flex-col items-center gap-3 group shadow-sm">
+            <i class="fa-solid fa-user-graduate text-4xl text-school-blue group-hover:scale-110 transition"></i>
+            <span class="font-bold text-gray-800">Masuk Sebagai Siswa</span>
+          </button>
+          <button onclick="loginAs('guru')" class="p-6 border-2 border-soft-green/30 rounded-2xl hover:border-soft-green hover:bg-green-50/50 transition flex flex-col items-center gap-3 group shadow-sm">
+            <i class="fa-solid fa-user-tie text-4xl text-soft-green group-hover:scale-110 transition"></i>
+            <span class="font-bold text-gray-800">Masuk Sebagai Guru</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WEBSITE SISWA ================= -->
+    <section id="pageSiswa" class="hidden space-y-6">
+      
+      <!-- PILIH KELAS & INFO SISWA -->
+      <div class="bg-gradient-to-r from-school-blue via-blue-800 to-blue-900 rounded-3xl p-6 text-white shadow-lg flex flex-col md:flex-row justify-between items-center gap-6">
+        <div>
+          <span class="bg-soft-green text-gray-900 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Portal Siswa</span>
+          <h2 class="text-2xl font-black mt-2">Pelajaran INFORMATIKA</h2>
+          <p class="text-blue-100 text-sm">SMK SWASTA BANDUNG 2 TI PS TUAN</p>
+        </div>
+        
+        <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
+          <!-- ELEMEN PILIH KELAS SISWA -->
